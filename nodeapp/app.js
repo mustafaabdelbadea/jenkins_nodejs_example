@@ -20,6 +20,12 @@ connection.connect(function (err) {
   console.log("Connected to database.");
 });
 
+app.get('/', (req,res) => {
+  res.status(200)
+  res.send(`Application listening at port ${port}`)
+})
+
+
 app.get("/db", (req, res) => {
   if (connection.state === "disconnected") {
     console.error("Database connection failed: " + err.stack);
@@ -53,10 +59,6 @@ app.get("/redis", (req, res) => {
   });
 });
 
-app.get('/', (req,res) => {
-  res.status(200)
-  res.send(`Application listening at port ${port}`)
-})
 
 app.listen(port, () => {
   console.log(process.env.REDIS_HOSTNAME, process.env);
