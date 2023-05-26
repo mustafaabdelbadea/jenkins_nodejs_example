@@ -53,6 +53,10 @@ app.get("/redis", (req, res) => {
   });
 });
 
+app.get('/', (req,res) => {
+  res.send(`Application listening at port ${port}`)
+})
+
 app.listen(port, () => {
   console.log(process.env.REDIS_HOSTNAME, process.env);
   console.log(`Example app listening at http://localhost:${port}`);
