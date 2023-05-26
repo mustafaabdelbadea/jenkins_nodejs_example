@@ -21,8 +21,7 @@ pipeline {
 
         stage('Build image') {
             steps {
-                sh 'printenv'
-                sh 'docker build  --no-cache --build-arg RDS_USERNAME=$RDS_USERNAME --build-arg RDS_HOSTNAME=Mustaa -t mustafaabdelbadea/nodejs_rds_redis:$BUILD_NUMBER  .  '
+                sh 'docker build  --no-cache -t mustafaabdelbadea/nodejs_rds_redis:$BUILD_NUMBER  .  '
                 sh 'docker images'
             }
         }
