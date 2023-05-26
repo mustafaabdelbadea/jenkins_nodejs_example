@@ -54,6 +54,7 @@ app.get("/redis", (req, res) => {
 });
 
 app.get('/', (req,res) => {
+  res.status(200)
   res.send(`Application listening at port ${port}`)
 })
 
