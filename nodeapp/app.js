@@ -20,10 +20,10 @@ connection.connect(function (err) {
   console.log("Connected to database.");
 });
 
-// app.get('/', (req,res) => {
-//   res.status(200)
-//   res.send(`Application listening at port ${port}`)
-// })
+app.get('/', (req,res) => {
+  res.status(200)
+  res.send(`Application listening at port ${port}`)
+})
 
 
 app.get("/db", (req, res) => {
