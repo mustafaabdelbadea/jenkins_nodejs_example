@@ -8,7 +8,12 @@ pipeline {
             }
         }   
 
-    
+            stage('Build image') {
+            steps {
+                sh 'docker build  --no-cache -t mustafaabdelbadea/nodejs_rds_redis:$BUILD_NUMBER  .  '
+                sh 'docker images'
+            }
+        }
       
     }
 }
