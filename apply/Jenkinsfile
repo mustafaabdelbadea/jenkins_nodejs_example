@@ -22,6 +22,12 @@ pipeline {
                     }
             }
         }
+
+        stage('Nexus logout') {
+            steps {
+                    sh "docker logout  10.97.253.249:8082"
+            }
+        }
       
     }
 }
