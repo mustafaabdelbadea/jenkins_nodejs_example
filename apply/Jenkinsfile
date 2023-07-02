@@ -8,17 +8,13 @@ pipeline {
             }
         }   
 
-        stage('Build image') {
-            steps {
-                sh 'docker build  --no-cache -t 10.97.253.249:8082/nodejs:$BUILD_NUMBER  .  '
-            }
-        }
-         
-        stage('Push image') {
+        stage('Create pods') {
             steps {
                   withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'MYPASS', usernameVariable: 'MYUSER')]) {
                         sh "echo ${MYPASS} | docker login -u ${MYUSER} --password-stdin 10.97.253.249:8082"
-                        sh 'docker push 10.97.253.249:8082/nodejs:$BUILD_NUMBER'
+                        sh "chmod 555 ./k8s.sh"
+                        sh './k8s.sh'
+
                     }
             }
         }
