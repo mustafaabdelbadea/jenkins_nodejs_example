@@ -10,15 +10,15 @@ pipeline {
 
         stage('Build image') {
             steps {
-                sh 'docker build  --no-cache -t 35.226.215.215:8081/nodejs:$BUILD_NUMBER  .  '
+                sh 'docker build  --no-cache -t 10.97.253.249/nodejs:$BUILD_NUMBER  .  '
             }
         }
          
         stage('Push image') {
             steps {
                   withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'MYPASS', usernameVariable: 'MYUSER')]) {
-                        sh 'docker login --username $MYUSER --password $MYPASS'
-                        sh 'docker push 35.226.215.215:8081/nodejs:$BUILD_NUMBER'
+                        sh "echo ${MYPASS} | docker login -u ${MYUSER} --password-stdin 10.97.253.249"
+                        sh 'docker push 10.97.253.249/nodejs:$BUILD_NUMBER'
                     }
             }
         }
