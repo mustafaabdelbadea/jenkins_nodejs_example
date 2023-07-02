@@ -8,10 +8,18 @@ pipeline {
             }
         }   
 
-            stage('Build image') {
+        stage('Build image') {
             steps {
-                sh 'docker build  --no-cache -t mustafaabdelbadea/nodejs_rds_redis:$BUILD_NUMBER  .  '
-                sh 'docker images'
+                sh 'docker build  --no-cache -t 35.226.215.215:8081/nodejs:$BUILD_NUMBER  .  '
+            }
+        }
+         
+        stage('Build image') {
+            steps {
+                  withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'MYPASS', usernameVariable: 'MYUSER')]) {
+                        sh 'docker login --username $MYUSER --password $MYPASS'
+                        sh 'docker push 35.226.215.215:8081/nodejs:$BUILD_NUMBER'
+                    }
             }
         }
       
