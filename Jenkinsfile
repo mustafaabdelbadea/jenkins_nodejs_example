@@ -14,7 +14,7 @@ pipeline {
             }
         }
          
-        stage('Build image') {
+        stage('Push image') {
             steps {
                   withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'MYPASS', usernameVariable: 'MYUSER')]) {
                         sh 'docker login --username $MYUSER --password $MYPASS'
