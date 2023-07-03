@@ -12,13 +12,9 @@ spec:
       app: application
   template:
     metadata:
-      name: application
       labels:
         app: application
     spec:
-      name: nexus-docker
-      imagePullSecrets: 
-        - name: nexus-docker
       containers:
       - name: application
         image: 10.96.0.18:8082/nodejs
@@ -45,4 +41,3 @@ spec:
             configMapKeyRef:
               name: mysql-config
               key: mysql-database
-
