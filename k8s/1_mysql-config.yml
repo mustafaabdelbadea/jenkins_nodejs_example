@@ -6,3 +6,4 @@ metadata:
 data: 
   mysql-url: mysql-service
   mysql-database: "iti"
+  mysql-user: root
