@@ -15,10 +15,14 @@ spec:
       labels:
         app: application
     spec:
+      name: nexus-docker
+      imagePullSecrets: 
+        - name: nexus-docker
       containers:
       - name: application
         image: 10.96.0.18:8082/nodejs
         ports:
+
         - containerPort: 3000
         env:
         - name: USERNAME
