@@ -21,18 +21,23 @@ spec:
         ports:
         - containerPort: 3000
         env:
-        - name: MYSQL_USERNAME
+        - name: USERNAME
           valueFrom:
             secretKeyRef:
               name: mysql-secret
               key: mysql-user
-        - name: MYSQL_PASSWORD
+        - name: PASSWORD
           valueFrom:
             secretKeyRef:
               name: mysql-secret
               key: mysql-password  
-        - name: DB_URL
+        - name: HOST
           valueFrom:
             configMapKeyRef:
               name: mysql-config
               key: mysql-url
+        - name: DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: mysql-config
+              key: mysql-database

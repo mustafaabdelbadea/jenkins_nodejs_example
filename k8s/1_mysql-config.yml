@@ -5,3 +5,4 @@ metadata:
   namespace: dev
 data: 
   mysql-url: mysql-service
+  mysql-database: "iti"
