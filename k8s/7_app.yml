@@ -12,6 +12,7 @@ spec:
       app: application
   template:
     metadata:
+      name: application
       labels:
         app: application
     spec:
@@ -22,7 +23,6 @@ spec:
       - name: application
         image: 10.96.0.18:8082/nodejs
         ports:
-
         - containerPort: 3000
         env:
         - name: USERNAME
@@ -45,3 +45,4 @@ spec:
             configMapKeyRef:
               name: mysql-config
               key: mysql-database
+
