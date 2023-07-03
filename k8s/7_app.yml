@@ -41,3 +41,6 @@ spec:
             configMapKeyRef:
               name: mysql-config
               key: mysql-database
+
+      imagePullSecrets:
+      - name: nexus-docker
