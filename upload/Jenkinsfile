@@ -10,22 +10,28 @@ pipeline {
 
         stage('Build image') {
             steps {
-                sh 'docker build  --no-cache -t 10.97.253.249:8082/nodejs:$BUILD_NUMBER  .  '
+                sh 'docker build  --no-cache -t 10.96.0.18:8082/nodejs  .  '
             }
         }
          
         stage('Push image') {
             steps {
                   withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'MYPASS', usernameVariable: 'MYUSER')]) {
-                        sh "echo ${MYPASS} | docker login -u ${MYUSER} --password-stdin 10.97.253.249:8082"
-                        sh 'docker push 10.97.253.249:8082/nodejs:$BUILD_NUMBER'
+                        sh "echo ${MYPASS} | docker login -u ${MYUSER} --password-stdin 10.96.0.18:8082"
+                        sh 'docker push 10.96.0.18:8082/nodejs'
                     }
+            }
+        }
+
+        stage('Delete local image') {
+            steps {
+                sh 'docker rmi 10.96.0.18:8082/nodejs'
             }
         }
 
         stage('Nexus logout') {
             steps {
-                    sh "docker logout  10.97.253.249:8082"
+                    sh "docker logout  10.96.0.18:8082"
             }
         }
       

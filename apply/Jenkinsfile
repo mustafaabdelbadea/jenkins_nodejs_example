@@ -11,7 +11,7 @@ pipeline {
         stage('Create pods') {
             steps {
                   withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'MYPASS', usernameVariable: 'MYUSER')]) {
-                        sh "echo ${MYPASS} | docker login -u ${MYUSER} --password-stdin 10.97.253.249:8082"
+                        sh "echo ${MYPASS} | docker login -u ${MYUSER} --password-stdin 10.96.0.18:8082"
                         sh "chmod 555 ./k8s.sh"
                         sh './k8s.sh'
 
@@ -21,7 +21,7 @@ pipeline {
 
         stage('Nexus logout') {
             steps {
-                    sh "docker logout  10.97.253.249:8082"
+                    sh "docker logout  10.96.0.18:8082"
             }
         }
       
