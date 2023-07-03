@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   name: mysql
-  namesapce: "dev"
+  namespace: dev
   labels:
     name: mysql
 spec:
